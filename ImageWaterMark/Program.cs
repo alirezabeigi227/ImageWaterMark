@@ -443,7 +443,7 @@
 //    }
 //}
 
-/////////////////////////////////Version5  ----->> Insert In db With ConnectionString /////////////////
+/////////////////////////////////Version5  ----->> Insert In db With ConnectionString  (Dapper in Asp .Net) /////////////////
 
 using OfficeOpenXml;
 using System.Drawing;
@@ -478,7 +478,7 @@ public class Program
         float maxFontSize = 26;
         float minFontSize = 16;
         float rightPadding = 20;
-        int targetSize = 20 * 1024; // 20 KB
+        int targetSize = 20 * 1024; // تقریبا 20 کیلو بایت به پایین میشود
 
         for (int i = 2; i <= rows; i++)
         {
