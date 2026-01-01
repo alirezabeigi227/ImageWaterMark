@@ -492,8 +492,8 @@ public class Program
 
             try
             {
-                using var bmp = new Bitmap(imagePath);
-                using Graphics g = Graphics.FromImage(bmp);
+                using var img = new Bitmap(imagePath);
+                using Graphics g = Graphics.FromImage(img);
                 g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
                 string text = $"شعبه {branchName} کد {branchCode}";
@@ -501,19 +501,19 @@ public class Program
                 Font font = new Font(fontCollection.Families[0], fontSize, FontStyle.Bold);
                 SizeF size = g.MeasureString(text, font);
 
-                while (size.Width > bmp.Width - 2 * rightPadding && fontSize > minFontSize)
+                while (size.Width > img.Width - 2 * rightPadding && fontSize > minFontSize)
                 {
                     fontSize--;
                     font = new Font(fontCollection.Families[0], fontSize, FontStyle.Bold);
                     size = g.MeasureString(text, font);
                 }
 
-                float x = bmp.Width - rightPadding - size.Width;
-                float y = (bmp.Height - size.Height) / 2 + marginBottom;
+                float x = img.Width - rightPadding - size.Width;
+                float y = (img.Height - size.Height) / 2 + marginBottom;
                 g.DrawString(text, font, brush, x, y);
 
                 using var ms = new MemoryStream();
-                Bitmap tempBmp = new Bitmap(bmp);
+                Bitmap tempBmp = new Bitmap(img);
                 int scale = 100;
 
                 while (true)
