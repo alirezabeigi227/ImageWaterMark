@@ -512,16 +512,16 @@ public class Program
                 float y = (img.Height - size.Height) / 2 + marginBottom;
                 g.DrawString(text, font, brush, x, y);
 
-                using var ms = new MemoryStream();
+                using var result = new MemoryStream();
                 Bitmap tempBmp = new Bitmap(img);
                 int scale = 100;
 
                 while (true)
                 {
-                    ms.SetLength(0);
-                    tempBmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    result.SetLength(0);
+                    tempBmp.Save(result, System.Drawing.Imaging.ImageFormat.Png);
 
-                    if (ms.Length <= targetSize || scale <= 20)
+                    if (result.Length <= targetSize || scale <= 20)
                         break;
 
                     scale -= 10;
@@ -533,9 +533,9 @@ public class Program
                     tempBmp = resized;
                 }
 
-                string base64Image = /*"data:image/png;base64," +*/ Convert.ToBase64String(ms.ToArray());
+                string base64Image = /*"data:image/png;base64," +*/ Convert.ToBase64String(result.ToArray());
 
-                InsertToDatabase(branchCode, branchName, Convert.ToBase64String(ms.ToArray()));
+                InsertToDatabase(branchCode, branchName, Convert.ToBase64String(result.ToArray()));
             }
             catch (Exception ex)
             {
